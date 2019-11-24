@@ -3,14 +3,16 @@ import React, { createContext } from 'react';
 // 1) create context in a component
 // 2) return JSX with Provider inside (ie. ThemeContext.Provider)
 // 2.5) state is passed into the Provider
-// 3) use ThemeContext.Provider tags in another component that wants to use that context
+// 3) use ThemeContextProvider tags in another component
+// 4) when we wrap components in the ThemeContextProvider they become children to the ThemeContextProvider component
+// 5) in the ThemeContextComponent they accessible as {this.props.children}
 
 // delcare and invoke a new context
 export const ThemeContext = createContext();
 
 // create a component with state that will contain 
 // that data we want to share between different components
-class ThemeContextProvider extends Component {
+class ThemeContextProvider extends React.Component {
     state = {
         isLightTheme: true,
         light: { syntax: '#555', ui: '#ddd' , bg: '#eee'}, 
@@ -19,7 +21,7 @@ class ThemeContextProvider extends Component {
     render() {
         return (
             <ThemeContext.Provider value={{ ...this.state }}>
-
+                {this.props.children}
             </ThemeContext.Provider>
         );
     }
