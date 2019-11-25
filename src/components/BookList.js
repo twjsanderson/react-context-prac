@@ -4,6 +4,7 @@ import { ThemeContext } from '../contexts/ThemeContext';
 class BookList extends React.Component {
     // This takes any data attached to the value variable in the ThemeContext component\
     // We can then use that components state in our app below
+    // We can ONLY use static contexttype... in class based components
     static contextType = ThemeContext;
 
     render () {
